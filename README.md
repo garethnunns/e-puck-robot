@@ -1,6 +1,8 @@
 # e-puck-robot
 Contolling e puck robots with C
 
+Please assign behaviours to the positions below:
+
 Aggressive - Position 1 <br />
 Fear - Position 2 <br />
 Love - Position 3 <br />
