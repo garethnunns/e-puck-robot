@@ -1,9 +1,9 @@
 # e-puck-robot
 Contolling e puck robots with C
 
-Aggressive - Position 1
-Fear - Position 2
-Love - Position 3
-Curious -  Position 4
-Goal Seeking and Obstacle Avoidance - Position 5
-High Level - Position 6
+Aggressive - Position 1 <br />
+Fear - Position 2 <br />
+Love - Position 3 <br />
+Curious -  Position 4 <br />
+Goal Seeking and Obstacle Avoidance - Position 5 <br />
+High Level - Position 6 <br />
