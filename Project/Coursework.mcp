@@ -8,8 +8,8 @@ dir_src=
 dir_bin=
 dir_tmp=
 dir_sin=
-dir_inc=.\..\Program\library
-dir_lib=G:\GitHub\e-puck-robot\Project\src;C:\Program Files\Microchip\MPLAB C30\lib
+dir_inc=..\Project\src
+dir_lib=.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib
 dir_lkr=
 [CAT_FILTERS]
 filter_src=*.s;*.c
@@ -26,15 +26,23 @@ subfolder_lkr=
 [FILE_SUBFOLDERS]
 file_000=.
 file_001=.
+file_002=.
+file_003=.
 [GENERATED_FILES]
 file_000=no
 file_001=no
+file_002=no
+file_003=no
 [OTHER_FILES]
 file_000=no
 file_001=no
+file_002=no
+file_003=no
 [FILE_INFO]
 file_000=src\main.c
-file_001=gld\p30f6014A.gld
+file_001=lib\uart\e_uart_char.h
+file_002=lib\motor_led\e_init_port.h
+file_003=gld\p30f6014A.gld
 [SUITE_INFO]
 suite_guid={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 suite_state=

@@ -2,9 +2,8 @@
 #include "stdio.h"
 #include "string.h"
 
-#include "uart/e_uart_char.h"
-#include "motor_led/e_init_port.h"
-#include "utility.h"
+#include "../lib/motor_led/e_init_port.c"
+#include "../lib/utility.c"
 
 #define PI 3.14159265358979
 
@@ -14,7 +13,6 @@ int main() {
 
 	//system initialization 
 	e_init_port();
-	e_init_uart1();
 
 	// Decide mode
 	selector=getselector();
@@ -33,9 +31,9 @@ int main() {
 		// Goal Seeking and Obstacle Avoidance
 	} else if (selector==6) {
 		// High Level
-	} else
+	} else { 
 		// flash all the lights?
-	
+	}	
 	while(1);
 	return 0;
 }
