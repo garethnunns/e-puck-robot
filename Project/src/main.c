@@ -33,6 +33,14 @@ int main() {
 		// High Level
 	} else { 
 		// flash all the lights?
+		long i;
+		int led=0;
+		while(1)
+				{
+				LED0 = led = led^1;
+				for(i=0;i<300000;i++)
+					asm("nop");
+		}
 	}	
 	while(1);
 	return 0;
