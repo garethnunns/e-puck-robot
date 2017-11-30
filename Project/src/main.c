@@ -2,46 +2,66 @@
 #include "stdio.h"
 #include "string.h"
 
-#include "../lib/motor_led/e_init_port.c"
-#include "../lib/utility.c"
+//#include "../lib/codec/e_sound.h"
+#include "../lib/motor_led/e_init_port.h"
+#include "../lib/motor_led/e_motors.h"
+#include "../lib/motor_led/e_led.h"
+#include "../lib/uart/e_uart_char.h"
+#include "../lib/a_d/e_ad_conv.h"
+#include "../lib/a_d/e_prox.h"
+//#include "..math.h"
+#include "../lib/utility.h"
 
 #define PI 3.14159265358979
 
+/* our header files go here */
+#include "highlevel.h"
+
+
 int main() {
-	char buffer[80];
 	int selector;
 
 	//system initialization 
 	e_init_port();
+	//e_init_sound();
 
-	// Decide mode
-	selector=getselector();
+	int led=0;
+
+	while(1){
+
+		// Decide mode
+		selector=getselector();
 	
-	if (selector==0) {
-		//
-	} else if (selector==1) {
-		// Aggressive
-	} else if (selector==2) {
-		// Fear
-	} else if (selector==3) {
-		// Love
-	} else if (selector==4) {
-		// Curious
-	} else if (selector==5) {
-		// Goal Seeking and Obstacle Avoidance
-	} else if (selector==6) {
-		// High Level
-	} else { 
-		// flash all the lights?
-		long i;
-		int led=0;
-		while(1)
-				{
-				LED0 = led = led^1;
-				for(i=0;i<300000;i++)
-					asm("nop");
+		//reset lights so they are off for all other modes
+		e_led_clear();
+
+		if (selector==0) {
+			//
+		} else if (selector==1) {
+			// Aggressive
+		} else if (selector==2) {
+			// Fear
+		} else if (selector==3) {
+			// Love
+		} else if (selector==4) {
+			// Curious
+		} else if (selector==5) {
+			// Goal Seeking and Obstacle Avoidance
+		} else if (selector==6) {
+			// High Level
+			//runhighlevel();
+			e_play_sound(0,2112);
+		} else { 
+			// flash the light
+			led = (led >= 7)? 0 : led + 1;
+			e_led_clear();
+			e_set_led(led,1);
+			long led_timer;
+			for(led_timer=0;led_timer<250000;led_timer++){
+				asm("nop");
+			}
 		}
-	}	
-	while(1);
+
+	}
 	return 0;
 }
