@@ -16,6 +16,7 @@
 
 /* our header files go here */
 #include "highlevel.h"
+#include "aggressive.h"
 
 
 int main() {
@@ -23,8 +24,7 @@ int main() {
 
 	//system initialization 
 	e_init_port();
-	//e_init_sound();
-
+	e_init_prox();
 	int led=0;
 
 	while(1){
@@ -39,6 +39,7 @@ int main() {
 			//
 		} else if (selector==1) {
 			// Aggressive
+			aggressive(selector);
 		} else if (selector==2) {
 			// Fear
 		} else if (selector==3) {
@@ -50,8 +51,9 @@ int main() {
 		} else if (selector==6) {
 			// High Level
 			//runhighlevel();
-			e_play_sound(0,2112);
 		} else { 
+			e_set_speed_left(0);
+			e_set_speed_right(0);
 			// flash the light
 			led = (led >= 7)? 0 : led + 1;
 			e_led_clear();
