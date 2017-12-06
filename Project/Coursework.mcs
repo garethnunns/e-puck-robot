@@ -1,0 +1,163 @@
+[Header]
+MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
+Version=1.0
+[File000]
+Location=U:\GitHub\e-puck-robot\Project\main.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File001]
+Location=U:\GitHub\e-puck-robot\Project\e_init_port.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File002]
+Location=U:\GitHub\e-puck-robot\Project\e_led.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File003]
+Location=U:\GitHub\e-puck-robot\Project\e_ad_conv.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File004]
+Location=U:\GitHub\e-puck-robot\Project\e_prox.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File005]
+Location=U:\GitHub\e-puck-robot\Project\utility.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File006]
+Location=U:\GitHub\e-puck-robot\Project\highlevel.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File007]
+Location=U:\GitHub\e-puck-robot\Project\aggressive.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File008]
+Location=U:\GitHub\e-puck-robot\Project\e_motors.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File009]
+Location=U:\GitHub\e-puck-robot\Project\avoid.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File010]
+Location=U:\GitHub\e-puck-robot\Project\Coursework.cof
+Folder=Output
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
+LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-ld.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=--heap=512 -Map="$(BINDIR_)$(TARGETBASE).map" --report-mem -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
+TraceCmdString=
+DebugOptions=--defsym=__MPLAB_DEBUG=1
+[File011]
+Location=U:\GitHub\e-puck-robot\Project\Coursework.hex
+Folder=Output
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
+LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-ld.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=--heap=512 -Map="$(BINDIR_)$(TARGETBASE).map" --report-mem -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
+TraceCmdString=
+DebugOptions=--defsym=__MPLAB_DEBUG=1
+[TOOL_LOC_STAMPS]
+tool_loc{DE18EB1A-B46B-486B-B96F-A811A635DFAC}=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-as.exe
+tool_loc{069BD372-6CA0-40D4-BF2F-5DC806D05083}=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
+tool_loc{433C3D55-811D-409D-A6BF-159CF9355B42}=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-ld.exe
