@@ -34,6 +34,7 @@ file_006=.
 file_007=.
 file_008=.
 file_009=.
+file_010=.
 [GENERATED_FILES]
 file_000=no
 file_001=no
@@ -45,6 +46,7 @@ file_006=no
 file_007=no
 file_008=no
 file_009=no
+file_010=no
 [OTHER_FILES]
 file_000=no
 file_001=no
@@ -56,6 +58,7 @@ file_006=no
 file_007=no
 file_008=no
 file_009=no
+file_010=no
 [FILE_INFO]
 file_000=src\main.c
 file_001=lib\motor_led\e_init_port.c
@@ -66,7 +69,8 @@ file_005=lib\utility.c
 file_006=src\highlevel.c
 file_007=src\aggressive.c
 file_008=lib\motor_led\e_motors.c
-file_009=gld\p30f6014A.gld
+file_009=src\avoid.c
+file_010=gld\p30f6014A.gld
 [SUITE_INFO]
 suite_guid={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 suite_state=

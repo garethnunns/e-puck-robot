@@ -17,7 +17,8 @@
 /* our header files go here */
 #include "highlevel.h"
 #include "aggressive.h"
-
+#include "avoid.h"
+#include "main.h"
 
 int main() {
 	int selector;
@@ -25,7 +26,7 @@ int main() {
 	//system initialization 
 	e_init_port();
 	e_init_prox();
-	int led=0;
+	e_init_motors();
 
 	while(1){
 
@@ -37,33 +38,54 @@ int main() {
 
 		if (selector==0) {
 			//
+			avoid(selector);
 		} else if (selector==1) {
 			// Aggressive
 			aggressive(selector);
 		} else if (selector==2) {
 			// Fear
+			flash_led(selector);
 		} else if (selector==3) {
 			// Love
+			flash_led(selector);
 		} else if (selector==4) {
 			// Curious
+			flash_led(selector);
 		} else if (selector==5) {
 			// Goal Seeking and Obstacle Avoidance
+			while(getselector() == 5){
+				e_set_speed_left(500);
+			}
 		} else if (selector==6) {
 			// High Level
 			//runhighlevel();
-		} else { 
-			e_set_speed_left(0);
-			e_set_speed_right(0);
-			// flash the light
-			led = (led >= 7)? 0 : led + 1;
-			e_led_clear();
-			e_set_led(led,1);
-			long led_timer;
-			for(led_timer=0;led_timer<250000;led_timer++){
-				asm("nop");
-			}
+			flash_led(selector);
+		}else if (selector == 7){
+			avoid(selector);
+		}else { 
+			flash_led(selector);
 		}
 
 	}
 	return 0;
+}
+
+
+void flash_led(int selection){
+
+	int led = 0;
+
+	e_set_speed_left(0);
+	e_set_speed_right(0);
+
+	while(getselector() == selection){
+		// flash the light
+		led = (led >= 7)? 0 : led + 1;
+		e_led_clear();
+		e_set_led(led,1);
+		long led_timer;
+		for(led_timer=0;led_timer<250000;led_timer++){
+			asm("nop");
+		}
+	}
 }
