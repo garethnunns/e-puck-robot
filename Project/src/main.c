@@ -12,6 +12,9 @@
 //#include "..math.h"
 #include "../lib/utility.h"
 
+#include "../lib/motor_led/advance_one_timer/e_remote_control.h"
+#include "../lib/motor_led/advance_one_timer/e_agenda.h"
+
 #define PI 3.14159265358979
 
 /* our header files go here */
@@ -62,7 +65,21 @@ int main() {
 			flash_led(selector);
 		}else if (selector == 7){
 			avoid(selector);
-		}else { 
+		}
+		else if (selector == 8) {
+			int ir_check;
+			int previous_check = 0;
+			e_init_remote_control();
+			e_start_agendas_processing();
+			while(1)
+			{
+				ir_check = e_get_check();
+				if(ir_check != previous_check)
+					e_set_body_led(2);
+				previous_check = ir_check;
+			}
+		}
+		else { 
 			flash_led(selector);
 		}
 

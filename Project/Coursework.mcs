@@ -9,7 +9,7 @@ LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
 LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
 PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
-SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c|lib\motor_led\advance_one_timer\e_agenda.c|lib\motor_led\advance_one_timer\e_remote_control.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
 SuiteArgsString=
 ToolArgsString=-g -Wall
 TraceCmdString=
@@ -74,7 +74,7 @@ LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
 LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
 PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
-SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c|lib\motor_led\advance_one_timer\e_agenda.c|lib\motor_led\advance_one_timer\e_remote_control.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
 SuiteArgsString=
 ToolArgsString=-g -Wall
 TraceCmdString=
@@ -132,6 +132,32 @@ ToolArgsString=-g -Wall
 TraceCmdString=
 DebugOptions=-D__DEBUG
 [File010]
+Location=U:\GitHub\e-puck-robot\Project\e_agenda.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c|lib\motor_led\advance_one_timer\e_agenda.c|lib\motor_led\advance_one_timer\e_remote_control.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File011]
+Location=U:\GitHub\e-puck-robot\Project\e_remote_control.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c|lib\motor_led\advance_one_timer\e_agenda.c|lib\motor_led\advance_one_timer\e_remote_control.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File012]
 Location=U:\GitHub\e-puck-robot\Project\Coursework.cof
 Folder=Output
 DeviceName=dsPIC30F6014A
@@ -139,12 +165,12 @@ LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
 LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-ld.exe
 PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
-SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c|lib\motor_led\advance_one_timer\e_agenda.c|lib\motor_led\advance_one_timer\e_remote_control.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
 SuiteArgsString=
 ToolArgsString=--heap=512 -Map="$(BINDIR_)$(TARGETBASE).map" --report-mem -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
 TraceCmdString=
 DebugOptions=--defsym=__MPLAB_DEBUG=1
-[File011]
+[File013]
 Location=U:\GitHub\e-puck-robot\Project\Coursework.hex
 Folder=Output
 DeviceName=dsPIC30F6014A
@@ -152,7 +178,7 @@ LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
 LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-ld.exe
 PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)|..\Project\src||$(LIBDIR)|.\..\Project\lib;C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
-SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
+SOLK=<src>|src\main.c|lib\motor_led\e_init_port.c|lib\motor_led\e_led.c|lib\a_d\e_ad_conv.c|lib\a_d\e_prox.c|lib\utility.c|src\highlevel.c|src\aggressive.c|lib\motor_led\e_motors.c|src\avoid.c|lib\motor_led\advance_one_timer\e_agenda.c|lib\motor_led\advance_one_timer\e_remote_control.c||<obj>||<lib>||<lkr>|gld\p30f6014A.gld||
 SuiteArgsString=
 ToolArgsString=--heap=512 -Map="$(BINDIR_)$(TARGETBASE).map" --report-mem -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
 TraceCmdString=
