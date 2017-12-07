@@ -22,6 +22,7 @@
 #include "aggressive.h"
 #include "avoid.h"
 #include "main.h"
+#include "goalseeking.h"
 
 int main() {
 	int selector;
@@ -56,9 +57,7 @@ int main() {
 			flash_led(selector);
 		} else if (selector==5) {
 			// Goal Seeking and Obstacle Avoidance
-			while(getselector() == 5){
-				e_set_speed_left(500);
-			}
+			goalseeking(selector);
 		} else if (selector==6) {
 			// High Level
 			//runhighlevel();

@@ -5,10 +5,10 @@
 
 int aggressive (int selection)
 {
-    aggressive_change(0, 0);
-    int IRS = 0;
-    int IRSN = 0;
-    int IRSV = e_get_prox(0);
+    aggressive_change(0, 0);   
+    int IRS = 0;                //Original Detection sensor
+    int IRSN = 0;               //New Detection sensor
+    int IRSV = e_get_prox(0);   //Current Detection Sensor value
     int i = 0;
 
 	while(getselector() == selection)

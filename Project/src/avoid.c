@@ -40,6 +40,10 @@ void avoid_move(void){
 	int left = e_get_prox(6);
 	int right = e_get_prox(1);
 
+	int back_1 = e_get_prox(3);
+	int back_2 = e_get_prox(4);
+	int back = (back_1 > back_2) ? back_1 : back_2;
+
 	e_led_clear();
 
 	if(front > 200 && right > left){
@@ -56,6 +60,9 @@ void avoid_move(void){
 	}else if(right > 200){
 		avoid_turn_left();
 		e_set_led(1,1);
+	}else if(back > 200){
+		avoid_speed_up();
+		e_set_led(4,1);
 	}else{
 		avoid_go_straight();
 	}
@@ -75,4 +82,9 @@ void avoid_turn_left(void){
 void avoid_go_straight(void){
 	e_set_speed_left(500);
 	e_set_speed_right(500);
+}
+
+void avoid_speed_up(void){
+	e_set_speed_left(1000);
+	e_set_speed_right(1000);
 }

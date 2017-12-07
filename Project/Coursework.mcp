@@ -37,6 +37,7 @@ file_009=.
 file_010=.
 file_011=.
 file_012=.
+file_013=.
 [GENERATED_FILES]
 file_000=no
 file_001=no
@@ -51,6 +52,7 @@ file_009=no
 file_010=no
 file_011=no
 file_012=no
+file_013=no
 [OTHER_FILES]
 file_000=no
 file_001=no
@@ -65,6 +67,7 @@ file_009=no
 file_010=no
 file_011=no
 file_012=no
+file_013=no
 [FILE_INFO]
 file_000=src\main.c
 file_001=lib\motor_led\e_init_port.c
@@ -78,7 +81,8 @@ file_008=lib\motor_led\e_motors.c
 file_009=src\avoid.c
 file_010=lib\motor_led\advance_one_timer\e_agenda.c
 file_011=lib\motor_led\advance_one_timer\e_remote_control.c
-file_012=gld\p30f6014A.gld
+file_012=src\goalseeking.c
+file_013=gld\p30f6014A.gld
 [SUITE_INFO]
 suite_guid={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 suite_state=
