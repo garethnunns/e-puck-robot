@@ -8,7 +8,7 @@
 void avoid(int selection){
 
 
-	while(getselector() == selection){
+	while(1){
 	
 		//start moving
 		avoid_move();
@@ -46,7 +46,10 @@ void avoid_move(void){
 
 	e_led_clear();
 
-	if(front > 200 && right > left){
+	if(front > 300){
+		avoid_reverse();
+		e_set_led(0,1);
+	}else if(front > 200 && right > left){
 		avoid_turn_left();
 		e_set_led(0,1);
 		e_set_led(1,1);
@@ -87,4 +90,9 @@ void avoid_go_straight(void){
 void avoid_speed_up(void){
 	e_set_speed_left(1000);
 	e_set_speed_right(1000);
+}
+
+void avoid_reverse(void){
+	e_set_speed_left(-500);
+	e_set_speed_right(-500);
 }
