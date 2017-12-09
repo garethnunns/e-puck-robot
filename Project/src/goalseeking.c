@@ -18,6 +18,7 @@ int leftTurnCount = 0;
 long leftSteps = 0;
 long rightSteps = 0;
 long loopCounter = 0;
+long returningSteps = 0;
 
 
 void goalseek_wait(long value)
@@ -33,26 +34,30 @@ void turnLightsOn(){
 	//this is an infinite wait :)
 	e_set_speed_left(0);
 	e_set_speed_right(0);
-	int fl;
-	for(fl=0; fl<100000; fl++){
-		e_set_front_led(1);
-		e_set_body_led(1);
-		e_set_front_led(0);
-		e_set_body_led(0);
+	e_set_led(8,1);
+	goalseek_wait(10000);
+	while(1){
+		asm("nop");
+		goalseek_wait(10000);
 	}
-	wait(50000000);
 }
 
-int checkIfClear(){
+void clearWall(){
 	int prox4;
 	int prox5;
 	prox5 = e_get_prox(5);
-	if(prox5 > 300){
-		return 1;
+	e_set_steps_left(0);
+	e_set_steps_right(0); 
+	if(prox5 > 400){	
+		e_set_led(2,1);
+		e_set_speed_left(250);
+		e_set_speed_right(250);
+		prox5 = e_get_prox(5);	
+		goalseek_wait(10000);
 	} else {
-		return 0;
+		turnLightsOn();
 	}
-
+	clearWall();
 }
 
 void turnRightNinetyDegrees(){
@@ -83,6 +88,7 @@ void turnLeftNinetyDegrees(){
 
 void obstacleAvoid(){
 	turnRightNinetyDegrees();
+	clearWall();
 	turnLightsOn(); 
 }
 
@@ -101,12 +107,12 @@ void detectFrontObstacle(){
 				e_set_speed_right(0);
 				e_set_led(0,1);
 				frontObstacleCount++;  // bump up obstacle count
-				//loopCounter++;
+				loopCounter++;
 			} else {
 				e_set_speed_left(300); // move forwards
 				e_set_speed_right(300);
 				e_set_led(0,0);
-				//loopCounter++;
+				loopCounter++;
 	  		}
 		}   		      
 }
