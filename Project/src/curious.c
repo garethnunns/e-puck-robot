@@ -2,7 +2,7 @@
 #include "../lib/motor_led/e_epuck_ports.h"
 #include "../lib/motor_led/advance_one_timer/e_motors.h"
 #include "../lib/motor_led/advance_one_timer/e_agenda.h"
-//#include "../lib/uart/e_uart_char.h"
+#include "../lib/uart/e_uart_char.h"
 #include "../lib/camera/fast_2_timer/e_poxxxx.h"
 #include "../lib/motor_led/advance_one_timer/e_led.h"
 
@@ -11,6 +11,7 @@
 #include "stdlib.h"
 
 #include "curious.h"
+
 
 char curBuffer[160];
 int curNumbuffer[80];
@@ -24,7 +25,7 @@ void curGetImage(){
     while(!e_poxxxx_is_img_ready()){};
 }
 // Image processing removes useless information
-void curImage(){	
+void curImage(){
 	long i;
 	int green, red, vis;
 	for(i=0; i<80; i++){
@@ -43,7 +44,7 @@ void curImage(){
 		}else{
 			curIsGreenVisable = 0;
 		}
-	}	
+	}
 }
 
 //Decide which way to turn based on the number of true pixels.
@@ -55,7 +56,7 @@ int curTurnDirection(){
 		sumL += curNumbuffer[i];
 		sumR += curNumbuffer[i+40];
 	}
-	if(sumL<sumR){ 
+	if(sumL<sumR){
 		return 1;
 	}else{
 		return 0;
@@ -88,7 +89,7 @@ void curAllLED(void){
 }
 
 void curCalculateSpeed(void) {
-	
+
 	int counter = 0;
 	int x;
 
@@ -113,14 +114,16 @@ void curCalculateSpeed(void) {
 
 //Main function of follower
 void curious(void){
-	
+
+
+
 	e_init_port();
-	//e_init_uart1();
+	e_init_uart1();
 	e_init_motors();
-	//basic set up for the camera and 
+	//basic set up for the camera and
 	e_poxxxx_init_cam();
 	e_poxxxx_config_cam(0,(ARRAY_HEIGHT - 4)/2,640,4,8,4,RGB_565_MODE);
-	e_poxxxx_write_cam_registers(); 
+	e_poxxxx_write_cam_registers();
 
 	e_start_agendas_processing();
 	int centreValue;
@@ -134,8 +137,8 @@ void curious(void){
 		e_led_clear();
 
 		//Take a section of the center, this means if there is an error with one it won't effect it as a whole.
-		centreValue = curNumbuffer[38] + curNumbuffer[39] + curNumbuffer[40] + curNumbuffer[41] + curNumbuffer[42] + curNumbuffer[43]; // removes stray 
-		if(centreValue > 3){ //If green is in the middle then it will go forward 
+		centreValue = curNumbuffer[38] + curNumbuffer[39] + curNumbuffer[40] + curNumbuffer[41] + curNumbuffer[42] + curNumbuffer[43]; // removes stray
+		if(centreValue > 3){ //If green is in the middle then it will go forward
 			e_destroy_agenda(curTurn);
 			//forward();
 
@@ -150,4 +153,3 @@ void curious(void){
 		}
 	}
 }
-

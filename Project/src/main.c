@@ -12,7 +12,6 @@
 //#include "..math.h"
 #include "../lib/utility.h"
 
-
 #define PI 3.14159265358979
 
 /* our header files go here */
@@ -22,10 +21,14 @@
 #include "main.h"
 #include "goalseeking.h"
 #include "curious.h"
+#include "findRed.h"
+
 
 int main() {
 	int selector;
 	e_init_port();
+	e_init_uart1();
+	e_init_motors();
 
 	//system initialization 
 
@@ -39,19 +42,18 @@ int main() {
 
 		if (selector==0) {
 			//
-			avoid(selector);
 		} else if (selector==1) {
 			// Aggressive
 			aggressive(selector);
 		} else if (selector==2) {
 			// Fear
-			flash_led(selector);
+			avoid(selector);
 		} else if (selector==3) {
 			// Love
 			flash_led(selector);
 		} else if (selector==4) {
 			// Curious
-			flash_led(selector);
+			curious();
 		} else if (selector==5) {
 			// Goal Seeking and Obstacle Avoidance
 			goalseeking(selector);
@@ -60,7 +62,7 @@ int main() {
 			//runhighlevel();
 			flash_led(selector);
 		}else if (selector == 7){
-			avoid(selector);
+			findRed();
 		}
 		else if (selector == 8) {
 			int ir_check;
