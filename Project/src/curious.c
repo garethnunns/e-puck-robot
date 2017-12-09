@@ -2,7 +2,7 @@
 #include "../lib/motor_led/e_epuck_ports.h"
 #include "../lib/motor_led/advance_one_timer/e_motors.h"
 #include "../lib/motor_led/advance_one_timer/e_agenda.h"
-#include "../lib/uart/e_uart_char.h"
+//#include "../lib/uart/e_uart_char.h"
 #include "../lib/camera/fast_2_timer/e_poxxxx.h"
 #include "../lib/motor_led/advance_one_timer/e_led.h"
 
@@ -115,7 +115,7 @@ void curCalculateSpeed(void) {
 void curious(void){
 	
 	e_init_port();
-	e_init_uart1();
+	//e_init_uart1();
 	e_init_motors();
 	//basic set up for the camera and 
 	e_poxxxx_init_cam();

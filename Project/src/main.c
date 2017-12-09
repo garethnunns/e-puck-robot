@@ -12,8 +12,6 @@
 //#include "..math.h"
 #include "../lib/utility.h"
 
-#include "../lib/motor_led/advance_one_timer/e_remote_control.h"
-#include "../lib/motor_led/advance_one_timer/e_agenda.h"
 
 #define PI 3.14159265358979
 
@@ -27,6 +25,7 @@
 
 int main() {
 	int selector;
+	e_init_port();
 
 	//system initialization 
 
