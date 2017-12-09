@@ -1,8 +1,11 @@
 #include "./motor_led/e_epuck_ports.h"
 
 void wait(long num) {
-	long i;
-	for(i=0;i<num;i++);
+	long a;
+   for(a=0;a<num;a++)
+   {
+       	asm("nop");
+   }
 }
 
 int getselector() {

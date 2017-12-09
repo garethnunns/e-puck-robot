@@ -109,8 +109,6 @@ void detectFrontObstacle(){
 				//loopCounter++;
 	  		}
 		}   		      
-		for(i=0; i<100000; i++) { asm("nop"); }
-		detectFrontObstacle();   
 }
 
 
@@ -118,9 +116,9 @@ void goalseeking(int selection){
 	e_init_motors();
 	e_init_prox();
 	long j;
-	if(getselector() == selection){
+	while(1){
 		detectFrontObstacle();
+		for(j=0; j<100000; j++) { asm("nop"); }	
 	}
-	for(j=0; j<100000; j++) { asm("nop"); }	
 }
 

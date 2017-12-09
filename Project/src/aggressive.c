@@ -5,13 +5,18 @@
 
 int aggressive (int selection)
 {
+	
+	e_init_port();
+	e_init_prox();
+	e_init_motors();
+
     aggressive_change(0, 0);   
     int IRS = 0;                //Original Detection sensor
     int IRSN = 0;               //New Detection sensor
     int IRSV = e_get_prox(0);   //Current Detection Sensor value
     int i = 0;
 
-	while(getselector() == selection)
+	while(1)
     {
         IRSV = 0;
         for(i=0;i<8;i++)                                  //Loop for sensor reading

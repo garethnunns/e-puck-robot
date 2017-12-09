@@ -6,7 +6,10 @@
 #include "avoid.h"
 
 void avoid(int selection){
-
+	
+	e_init_port();
+	e_init_prox();
+	e_init_motors();
 
 	while(1){
 	
@@ -15,6 +18,8 @@ void avoid(int selection){
 		//avoid_set_leds();
 		aggressive_wait();
 	}	
+
+	
 }
 
 void avoid_set_leds(void){

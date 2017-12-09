@@ -23,14 +23,12 @@
 #include "avoid.h"
 #include "main.h"
 #include "goalseeking.h"
+#include "curious.h"
 
 int main() {
 	int selector;
 
 	//system initialization 
-	e_init_port();
-	e_init_prox();
-	e_init_motors();
 
 	while(1){
 
@@ -91,6 +89,8 @@ void flash_led(int selection){
 
 	int led = 0;
 
+	e_init_port();
+
 	e_set_speed_left(0);
 	e_set_speed_right(0);
 
@@ -104,4 +104,6 @@ void flash_led(int selection){
 			asm("nop");
 		}
 	}
+
+	
 }
