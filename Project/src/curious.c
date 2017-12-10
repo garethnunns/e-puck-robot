@@ -74,7 +74,13 @@ void curious_investigate(void){
 		curious_wait(10000);
 	}
 	
-
+	if(rightCounter > leftCounter){
+		//turn 90 deg left
+		curious_turn_left_90();
+	}else{
+		//turn 90 deg right
+		curious_turn_right_90();
+	}
 	
 }
 
@@ -137,4 +143,30 @@ void curious_speed_up(void){
 void curious_reverse(void){
 	e_set_speed_left(-1000);
 	e_set_speed_right(-1000);
+}
+
+void curious_turn_right_90(void){
+	e_set_steps_left(0); // reset left steps
+	e_set_led(0,0);
+	int leftSteps = 0;
+	while(leftSteps<=325){
+		e_set_led(4,1);	 	
+		e_set_speed_left(325);
+		e_set_speed_right(-325);
+		leftSteps = e_get_steps_left();
+		curious_wait(10000);
+	} 		   
+}
+
+void curious_turn_left_90(void){
+	e_set_steps_right(0); // reset right steps
+	e_set_led(0,0);
+	int rightSteps = 0;
+	while(rightSteps<=325){
+		e_set_led(4,1);	 	
+		e_set_speed_left(-325);
+		e_set_speed_right(325);
+		rightSteps = e_get_steps_right();
+		curious_wait(10000);
+	}		   
 }
