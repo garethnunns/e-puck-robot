@@ -42,6 +42,7 @@ int main() {
 
 		if (selector==0) {
 			//
+			avoid(selector);
 		} else if (selector==1) {
 			// Aggressive
 			aggressive(selector);
@@ -50,7 +51,7 @@ int main() {
 			fear(selector);
 		} else if (selector==3) {
 			// Love
-			flash_led(selector);
+			love(selector);
 		} else if (selector==4) {
 			// Curious
 			curious(selector);
