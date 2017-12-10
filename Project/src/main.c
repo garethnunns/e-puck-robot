@@ -21,7 +21,7 @@
 #include "main.h"
 #include "goalseeking.h"
 #include "curious.h"
-#include "findRed.h"
+#include "fear.h"
 
 
 int main() {
@@ -47,13 +47,13 @@ int main() {
 			aggressive(selector);
 		} else if (selector==2) {
 			// Fear
-			avoid(selector);
+			fear(selector);
 		} else if (selector==3) {
 			// Love
 			flash_led(selector);
 		} else if (selector==4) {
 			// Curious
-			curious();
+			curious(selector);
 		} else if (selector==5) {
 			// Goal Seeking and Obstacle Avoidance
 			goalseeking(selector);
@@ -62,7 +62,7 @@ int main() {
 			//runhighlevel();
 			flash_led(selector);
 		}else if (selector == 7){
-			findRed();
+			flash_led(selector);
 		}
 		else if (selector == 8) {
 			int ir_check;

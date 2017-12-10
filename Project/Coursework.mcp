@@ -53,6 +53,7 @@ file_025=.
 file_026=.
 file_027=.
 file_028=.
+file_029=.
 [GENERATED_FILES]
 file_000=no
 file_001=no
@@ -83,6 +84,7 @@ file_025=no
 file_026=no
 file_027=no
 file_028=no
+file_029=no
 [OTHER_FILES]
 file_000=no
 file_001=no
@@ -113,6 +115,7 @@ file_025=no
 file_026=no
 file_027=no
 file_028=no
+file_029=no
 [FILE_INFO]
 file_000=src\main.c
 file_001=lib\a_d\e_ad_conv.c
@@ -141,8 +144,9 @@ file_023=src\imageCapture.c
 file_024=src\findRed.c
 file_025=lib\camera\fast_2_timer\e_calc_po8030d.c
 file_026=lib\camera\fast_2_timer\e_po8030d_registers.c
-file_027=lib\uart\e_uart_char.a
-file_028=gld\p30f6014A.gld
+file_027=src\fear.c
+file_028=lib\uart\e_uart_char.a
+file_029=gld\p30f6014A.gld
 [SUITE_INFO]
 suite_guid={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 suite_state=
