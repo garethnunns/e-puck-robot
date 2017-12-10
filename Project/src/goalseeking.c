@@ -6,18 +6,13 @@
 #include "../lib/a_d/e_prox.h"
 #include "../lib/utility.h"
 
-//void advanceForwards(){	
-//}
-//
-//
-
-
 int frontObstacleCount = 0;
 int rightTurnCount = 0;
 int leftTurnCount = 0;
 long leftSteps = 0;
 long rightSteps = 0;
 long loopCounter = 0;
+long returningStepsDone = 0;
 long returningSteps = 0;
 
 
@@ -31,7 +26,7 @@ void goalseek_wait(long value)
 }
 
 void turnLightsOn(){
-	//this is an infinite wait :)
+	// should be an infinite wait that turns lights on, called when goal is found
 	e_set_speed_left(0);
 	e_set_speed_right(0);
 	e_set_led(8,1);
@@ -42,23 +37,6 @@ void turnLightsOn(){
 	}
 }
 
-void clearWall(){
-	int prox4;
-	int prox5;
-	prox5 = e_get_prox(5);
-	e_set_steps_left(0);
-	e_set_steps_right(0); 
-	if(prox5 > 400){	
-		e_set_led(2,1);
-		e_set_speed_left(250);
-		e_set_speed_right(250);
-		prox5 = e_get_prox(5);	
-		goalseek_wait(10000);
-	} else {
-		turnLightsOn();
-	}
-	clearWall();
-}
 
 void turnRightNinetyDegrees(){
 	e_set_steps_left(0); // reset left steps
@@ -86,9 +64,62 @@ void turnLeftNinetyDegrees(){
 	leftTurnCount++;  		   
 }
 
+void returnToLine(){
+	e_set_speed_left(0);
+	e_set_speed_right(0);
+	e_set_steps_left(0);
+	e_set_steps_right(0);
+	returningStepsDone = e_get_steps_left();
+	while(returningStepsDone < returningSteps){
+		e_set_speed_left(250);
+		e_set_speed_right(250);
+		returningStepsDone = e_get_steps_left();
+		goalseek_wait(10000);
+	}	
+}
+
+void clearSide(){
+	int prox5;
+	int prox6;
+	prox5 = e_get_prox(5);
+	prox6 = e_get_prox(6);
+	e_set_steps_left(0);
+	e_set_steps_right(0); 
+	while(prox5 > 400 || prox6 > 800){	
+		e_set_led(2,1);
+		e_set_speed_left(250);
+		e_set_speed_right(250);
+		prox5 = e_get_prox(5);
+		prox6 = e_get_prox(6);	
+		goalseek_wait(10000);
+	}
+}
+
+void clearWall(){
+	int prox4;
+	int prox5;
+	prox5 = e_get_prox(5);
+	e_set_steps_left(0);
+	e_set_steps_right(0); 
+	while(prox5 > 400){	
+		e_set_led(2,1);
+		e_set_speed_left(250);
+		e_set_speed_right(250);
+		prox5 = e_get_prox(5);	
+		goalseek_wait(10000);
+	}
+	returningSteps = e_get_steps_left;
+}
+
+
 void obstacleAvoid(){
 	turnRightNinetyDegrees();
 	clearWall();
+	turnLeftNinetyDegrees();
+	clearSide();
+	turnLeftNinetyDegrees();
+	returnToLine();
+	turnRightNinetyDegrees();
 	turnLightsOn(); 
 }
 
