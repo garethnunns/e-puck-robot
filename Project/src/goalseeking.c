@@ -16,7 +16,6 @@ int wallCalledCount = 0;
 int sideCalledCount = 0;
 long leftSteps = 0;
 long rightSteps = 0;
-long loopCounter = 0;
 long returningStepsDone = 0;
 long returningSteps = 0;
 
@@ -48,11 +47,11 @@ void turnRightNinetyDegrees(){
 	e_set_led(0,0);
 	do{
 		e_set_led(4,1);	 	
-		e_set_speed_left(320);
-		e_set_speed_right(-320);
+		e_set_speed_left(325);
+		e_set_speed_right(-325);
 		leftSteps = e_get_steps_left();
 		goalseek_wait(10000);
-	}while(leftSteps<=320);
+	}while(leftSteps<=325);
 	rightTurnCount++;
 	e_set_led(4,0);  		   
 }
@@ -62,11 +61,11 @@ void turnLeftNinetyDegrees(){
 	e_set_led(0,0);
 	do{
 		e_set_led(4,1);	 	
-		e_set_speed_left(-320);
-		e_set_speed_right(320);
+		e_set_speed_right(325);
+		e_set_speed_left(-325);
 		rightSteps = e_get_steps_right();
 		goalseek_wait(10000);
-	}while(rightSteps<=320);
+	}while(rightSteps<=325);
 	leftTurnCount++;
 	e_set_led(4,0);  		   
 }
@@ -140,22 +139,23 @@ void obstacleAvoid(){
 	}
 	if(wallClearedCheck == 0){
 		wallCleared = clearWall();
-	}
-	if(wallCleared == 1){
-		if(leftTurnCount == 0){
-			turnLeftNinetyDegrees();
-		}
-		sideCleared = clearSide();
-		if(sideCleared == 1){
-			turnLeftNinetyDegrees();
-			returnToLine();
-			turnRightNinetyDegrees();
-			turnLightsOn();
+		obstacleAvoid();
+	} else {
+		if(wallCleared == 1){
+			if(leftTurnCount == 0){
+				turnLeftNinetyDegrees();
+			}
+			sideCleared = clearSide();
+			if(sideCleared == 1){
+				turnLeftNinetyDegrees();
+				returnToLine();
+				turnRightNinetyDegrees();	
+			} else {
+				obstacleAvoid();
+			}
 		} else {
 			obstacleAvoid();
-		}
-	} else {
-		obstacleAvoid();
+		}	
 	}		
 }
 
@@ -168,18 +168,30 @@ void detectFrontObstacle(){
 		// if obstacle detected by front proximity sensor
 		if(frontObstacleCount > 0){
 			obstacleAvoid();
+			//turnLightsOn();
+			// once obstacle has been avoided reset all variables
+			frontObstacleCount = 0;
+			rightTurnCount = 0;
+			leftTurnCount = 0;
+			wallClearedCheck = 0;
+			wallCleared = 0;
+			sideCleared = 0;
+			wallCalledCount = 0;
+			sideCalledCount = 0;
+			leftSteps = 0;
+			rightSteps = 0;
+			returningStepsDone = 0;
+			returningSteps = 0;				
 		} else { 
 			if(prox0 > 1500 ||  prox7 > 1500){
 				e_set_speed_left(0); // stop moving
 				e_set_speed_right(0);
 				e_set_led(0,1);
 				frontObstacleCount++;  // bump up obstacle count
-				loopCounter++;
 			} else {
 				e_set_speed_left(300); // move forwards
 				e_set_speed_right(300);
 				e_set_led(0,0);
-				loopCounter++;
 	  		}
 		}   		      
 }
@@ -191,7 +203,7 @@ void goalseeking(int selection){
 	long j;
 	while(1){
 		detectFrontObstacle();
-		for(j=0; j<100000; j++) { asm("nop"); }	
+		for(j=0; j<100000; j++) { asm("nop"); }
 	}
 }
 
