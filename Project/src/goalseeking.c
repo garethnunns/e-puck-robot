@@ -9,6 +9,11 @@
 int frontObstacleCount = 0;
 int rightTurnCount = 0;
 int leftTurnCount = 0;
+int wallClearedCheck = 0;
+int wallCleared = 0;
+int sideCleared = 0;
+int wallCalledCount = 0;
+int sideCalledCount = 0;
 long leftSteps = 0;
 long rightSteps = 0;
 long loopCounter = 0;
@@ -43,12 +48,13 @@ void turnRightNinetyDegrees(){
 	e_set_led(0,0);
 	do{
 		e_set_led(4,1);	 	
-		e_set_speed_left(325);
-		e_set_speed_right(-325);
+		e_set_speed_left(320);
+		e_set_speed_right(-320);
 		leftSteps = e_get_steps_left();
 		goalseek_wait(10000);
-	}while(leftSteps<=325);
-	rightTurnCount++;  		   
+	}while(leftSteps<=320);
+	rightTurnCount++;
+	e_set_led(4,0);  		   
 }
 
 void turnLeftNinetyDegrees(){
@@ -56,12 +62,13 @@ void turnLeftNinetyDegrees(){
 	e_set_led(0,0);
 	do{
 		e_set_led(4,1);	 	
-		e_set_speed_left(-325);
-		e_set_speed_right(325);
+		e_set_speed_left(-320);
+		e_set_speed_right(320);
 		rightSteps = e_get_steps_right();
 		goalseek_wait(10000);
-	}while(rightSteps<=325);
-	leftTurnCount++;  		   
+	}while(rightSteps<=320);
+	leftTurnCount++;
+	e_set_led(4,0);  		   
 }
 
 void returnToLine(){
@@ -78,49 +85,78 @@ void returnToLine(){
 	}	
 }
 
-void clearSide(){
+int clearSide(){
 	int prox5;
-	int prox6;
+	if(sideCalledCount == 0){
+		e_set_speed_left(250);
+		e_set_speed_right(250);
+		goalseek_wait(2000000);
+		sideCalledCount = 1;
+	}
 	prox5 = e_get_prox(5);
-	prox6 = e_get_prox(6);
-	e_set_steps_left(0);
-	e_set_steps_right(0); 
-	while(prox5 > 400 || prox6 > 800){	
-		e_set_led(2,1);
+	if(prox5 > 400){	
+		e_set_led(3,1);
 		e_set_speed_left(250);
 		e_set_speed_right(250);
 		prox5 = e_get_prox(5);
-		prox6 = e_get_prox(6);	
 		goalseek_wait(10000);
+		return 0;
+	} else {
+		goalseek_wait(1500000);
+		e_set_led(3,0);
+		return 1;
 	}
 }
 
-void clearWall(){
-	int prox4;
+int clearWall(){
 	int prox5;
 	prox5 = e_get_prox(5);
-	e_set_steps_left(0);
-	e_set_steps_right(0); 
-	while(prox5 > 400){	
+	if(wallCalledCount == 0){
+		e_set_steps_left(0);
+		e_set_steps_right(0); 
+		wallCalledCount = 1;
+	}
+	if(prox5 > 900){	
 		e_set_led(2,1);
 		e_set_speed_left(250);
 		e_set_speed_right(250);
 		prox5 = e_get_prox(5);	
 		goalseek_wait(10000);
+		return 0;
 	}
-	returningSteps = e_get_steps_left;
+	else{
+		goalseek_wait(1500000);
+		e_set_led(2,0);
+		wallClearedCheck = 1;
+		returningSteps = e_get_steps_left();
+		return 1;
+	}
 }
 
 
 void obstacleAvoid(){
-	turnRightNinetyDegrees();
-	clearWall();
-	turnLeftNinetyDegrees();
-	clearSide();
-	turnLeftNinetyDegrees();
-	returnToLine();
-	turnRightNinetyDegrees();
-	turnLightsOn(); 
+	if(rightTurnCount < 1){
+		turnRightNinetyDegrees();
+	}
+	if(wallClearedCheck == 0){
+		wallCleared = clearWall();
+	}
+	if(wallCleared == 1){
+		if(leftTurnCount == 0){
+			turnLeftNinetyDegrees();
+		}
+		sideCleared = clearSide();
+		if(sideCleared == 1){
+			turnLeftNinetyDegrees();
+			returnToLine();
+			turnRightNinetyDegrees();
+			turnLightsOn();
+		} else {
+			obstacleAvoid();
+		}
+	} else {
+		obstacleAvoid();
+	}		
 }
 
 void detectFrontObstacle(){
@@ -133,7 +169,7 @@ void detectFrontObstacle(){
 		if(frontObstacleCount > 0){
 			obstacleAvoid();
 		} else { 
-			if(prox0 > 300 ||  prox7 > 300){
+			if(prox0 > 1500 ||  prox7 > 1500){
 				e_set_speed_left(0); // stop moving
 				e_set_speed_right(0);
 				e_set_led(0,1);
