@@ -51,10 +51,7 @@ void avoid_move(void){
 
 	e_led_clear();
 
-	if(front > 300){
-		avoid_reverse();
-		e_set_led(0,1);
-	}else if(front > 200 && right > left){
+	if(front > 200 && right > left){
 		avoid_turn_left();
 		e_set_led(0,1);
 		e_set_led(1,1);
@@ -68,10 +65,12 @@ void avoid_move(void){
 	}else if(right > 200){
 		avoid_turn_left();
 		e_set_led(1,1);
-	}else if(back > 200){
+	}
+	/*else if(back > 200){
 		avoid_speed_up();
 		e_set_led(4,1);
-	}else{
+	}*/
+	else{
 		avoid_go_straight();
 	}
 

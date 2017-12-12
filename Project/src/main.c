@@ -61,9 +61,9 @@ int main() {
 		} else if (selector==6) {
 			// High Level
 			//runhighlevel();
-			flash_led(selector);
+			high_follower();
 		}else if (selector == 7){
-			flash_led(selector);
+			high_leader();
 		}
 		else if (selector == 8) {
 			int ir_check;
