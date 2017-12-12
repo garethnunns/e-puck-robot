@@ -5,7 +5,18 @@
 #include "../lib/a_d/e_ad_conv.h"
 #include "../lib/a_d/e_prox.h"
 #include "../lib/utility.h"
+#include "../lib/camera/fast_2_timer/e_poxxxx.h"
+#include "../lib/motor_led/advance_one_timer/e_led.h"
 
+#include "stdio.h"
+#include "string.h"
+#include "stdlib.h"
+
+char buffer[160];
+int numbuffer[80];
+long isGreenVisable;
+int stop = 0;
+int nospin = 0;
 int frontObstacleCount = 0;
 int rightTurnCount = 0;
 int leftTurnCount = 0;
@@ -30,6 +41,7 @@ void goalseek_wait(long value)
    }
 }
 
+
 void turnLightsOn(){
 	// should be an infinite wait that turns lights on, called when goal is found
 	e_set_speed_left(0);
@@ -42,17 +54,64 @@ void turnLightsOn(){
 	}
 }
 
+void goalseekFunction(){
+	
+    e_poxxxx_init_cam();
+	e_poxxxx_config_cam(0,(ARRAY_HEIGHT - 4)/2,640,4,8,4,RGB_565_MODE);
+	e_poxxxx_write_cam_registers(); 
+
+	e_start_agendas_processing();
+	int centreValue;
+
+	getImage();
+	Image();
+
+	centreValue = numbuffer[38] + numbuffer[39] + numbuffer[40] + numbuffer[41] + numbuffer[42] + numbuffer[43]; // removes stray 
+	if(centreValue > 3){ //If green is in the middle then it will go forward 
+		while(1){
+			turnLightsOn();
+		}
+	}
+}
+
+void Image(){	
+	long i;
+	int green, red, vis;
+	for(i=0; i<80; i++){
+		//RGB turned into an integer value for comparison
+		red = (buffer[2*i] & 0xF8);
+		green = (((buffer[2*i] & 0x07) << 5) | ((buffer[2*i+1] & 0xE0) >> 3));
+		if(green > red + 20){ //Green is usually much higher then red due the the extra bit place in RGB565
+			numbuffer[i] = 1;
+			vis +=1;
+		}else{
+			numbuffer[i] = 0;
+		}
+		//If Green is visable then isGreenVisable turns to true
+		if(vis>0){
+			isGreenVisable = 1;
+		}else{
+			isGreenVisable = 0;
+		}
+	}	
+}
+
+void getImage(){
+	e_poxxxx_launch_capture((char *)buffer);
+    while(!e_poxxxx_is_img_ready()){};
+}
+
 
 void turnRightNinetyDegrees(){
 	e_set_steps_left(0); // reset left steps
 	e_set_led(0,0);
 	do{
 		e_set_led(4,1);	 	
-		e_set_speed_left(318);
-		e_set_speed_right(-318);
+		e_set_speed_left(315);
+		e_set_speed_right(-315);
 		leftSteps = e_get_steps_left();
 		goalseek_wait(10000);
-	}while(leftSteps<=318);
+	}while(leftSteps<=315);
 	rightTurnCount++;
 	e_set_led(4,0);  		   
 }
@@ -187,6 +246,7 @@ void detectFrontObstacle(){
 				e_set_speed_right(0);
 				e_set_led(0,1);
 				frontObstacleCount++;  // bump up obstacle count
+				goalseekFunction();
 			} else {
 				e_set_speed_left(300); // move forwards
 				e_set_speed_right(300);
