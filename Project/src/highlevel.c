@@ -17,7 +17,7 @@
 
 char high_buffer[160];
 int high_numbuffer[80];
-long high_isRedVisable;
+long high_isgreenVisable;
 int high_stop = 0;
 int high_nospin = 0;
 
@@ -40,23 +40,34 @@ void high_follower(int selection){
 	//main program loop for follower
 	while(1){
 		if(looking){
-				int is_full_red = high_sense_green();
+				// when searching for the other robot
+
+				int is_full_green = high_sense_green();
 				int front_1 = e_get_prox(0);
 				int front_2 = e_get_prox(7);
 
-				if(is_full_red && (front_1 > 300 || front_2 > 300)){
+				if(is_full_green && (front_1 > 300 || front_2 > 300)){
+						// found the robot (the robot should look green and there's something in front)
 						looking = 0;
 						following = 1;
 				}
+
+				// go to green
+
+				
 		}
 
 		if(following){
+			// have found the other robot
+
 			if(high_prox_clear()){
+				// no longer followign the other robot
 				looking = 1;
 				following = 0;
 			}
 
-			//turn and drive forward
+			// attempt to follow the other robot
+			love(selection);
 		}
 
 		aggressive_wait();
@@ -147,7 +158,7 @@ void high_image(){
 	  //RGB turned into an integer value for comparison
 	  red = (high_buffer[2*i] & 0xF8);
 	  green = (((high_buffer[2*i] & 0x07) << 5) | ((high_buffer[2*i+1] & 0xE0) >> 3));
-	  if(green + 20 < red){
+	  if(green > red + 20){
 			//Green is usually much higher then red due the the extra bit place in RGB565
 	   high_numbuffer[i] = 1;
 	   vis +=1;
@@ -155,11 +166,11 @@ void high_image(){
 		else{
 	   high_numbuffer[i] = 0;
 	  }
-	  //If Red is visable then high_isRedVisable turns to true
+	  //If green is visable then high_isgreenVisable turns to true
 	  if(vis>0){
-	   high_isRedVisable = 1;
+	   high_isgreenVisable = 1;
 	  }else{
-	   high_isRedVisable = 0;
+	   high_isgreenVisable = 0;
 	  }
 	 }
 }
