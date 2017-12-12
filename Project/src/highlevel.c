@@ -59,7 +59,7 @@ void high_follower(int selection){
 			//turn and drive forward
 		}
 
-		high_wait(10000);
+		aggressive_wait();
 	}
 }
 
