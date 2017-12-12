@@ -1,12 +1,12 @@
-#include "../lib/motor_led/e_init_port.h"
-#include "../lib/motor_led/e_motors.h"
-#include "../lib/motor_led/e_led.h"
-#include "../lib/uart/e_uart_char.h"
-#include "../lib/a_d/e_ad_conv.h"
-#include "../lib/a_d/e_prox.h"
-#include "../lib/utility.h"
-#include "../lib/camera/fast_2_timer/e_poxxxx.h"
-#include "../lib/motor_led/advance_one_timer/e_led.h"
+#include "motor_led/e_init_port.h"
+#include "motor_led/e_motors.h"
+#include "motor_led/e_led.h"
+#include "uart/e_uart_char.h"
+#include "a_d/e_ad_conv.h"
+#include "a_d/e_prox.h"
+#include "utility.h"
+#include "camera/fast_2_timer/e_poxxxx.h"
+#include "motor_led/advance_one_timer/e_led.h"
 
 #include "stdio.h"
 #include "string.h"
@@ -72,33 +72,6 @@ void goalseekFunction(){
 			turnLightsOn();
 		}
 	}
-}
-
-void Image(){	
-	long i;
-	int green, red, vis;
-	for(i=0; i<80; i++){
-		//RGB turned into an integer value for comparison
-		red = (buffer[2*i] & 0xF8);
-		green = (((buffer[2*i] & 0x07) << 5) | ((buffer[2*i+1] & 0xE0) >> 3));
-		if(green > red + 20){ //Green is usually much higher then red due the the extra bit place in RGB565
-			numbuffer[i] = 1;
-			vis +=1;
-		}else{
-			numbuffer[i] = 0;
-		}
-		//If Green is visable then isGreenVisable turns to true
-		if(vis>0){
-			isGreenVisable = 1;
-		}else{
-			isGreenVisable = 0;
-		}
-	}	
-}
-
-void getImage(){
-	e_poxxxx_launch_capture((char *)buffer);
-    while(!e_poxxxx_is_img_ready()){};
 }
 
 

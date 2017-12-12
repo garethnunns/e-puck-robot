@@ -1,8 +1,8 @@
-#include "../lib/motor_led/e_init_port.h"
-#include "../lib/motor_led/e_motors.h"	
-#include "../lib/motor_led/e_led.h"
-#include "../lib/a_d/e_prox.h"
-#include "../lib/utility.h"
+#include "motor_led/e_init_port.h"
+#include "motor_led/e_motors.h"	
+#include "motor_led/e_led.h"
+#include "a_d/e_prox.h"
+#include "utility.h"
 
 int aggressive (int selection)
 {

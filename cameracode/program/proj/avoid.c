@@ -1,7 +1,7 @@
-#include "../lib/motor_led/e_init_port.h"
-#include "../lib/motor_led/e_motors.h"
-#include "../lib/motor_led/e_led.h"
-#include "../lib/a_d/e_prox.h"
+#include "motor_led/e_init_port.h"
+#include "motor_led/e_motors.h"
+#include "motor_led/e_led.h"
+#include "a_d/e_prox.h"
 
 #include "avoid.h"
 
