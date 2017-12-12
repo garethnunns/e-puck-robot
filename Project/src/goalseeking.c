@@ -10,6 +10,7 @@ int frontObstacleCount = 0;
 int rightTurnCount = 0;
 int leftTurnCount = 0;
 int wallClearedCheck = 0;
+int sideClearedCheck = 0;
 int wallCleared = 0;
 int sideCleared = 0;
 int wallCalledCount = 0;
@@ -47,11 +48,11 @@ void turnRightNinetyDegrees(){
 	e_set_led(0,0);
 	do{
 		e_set_led(4,1);	 	
-		e_set_speed_left(325);
-		e_set_speed_right(-325);
+		e_set_speed_left(318);
+		e_set_speed_right(-318);
 		leftSteps = e_get_steps_left();
 		goalseek_wait(10000);
-	}while(leftSteps<=325);
+	}while(leftSteps<=318);
 	rightTurnCount++;
 	e_set_led(4,0);  		   
 }
@@ -61,11 +62,11 @@ void turnLeftNinetyDegrees(){
 	e_set_led(0,0);
 	do{
 		e_set_led(4,1);	 	
-		e_set_speed_right(325);
-		e_set_speed_left(-325);
+		e_set_speed_right(318);
+		e_set_speed_left(-318);
 		rightSteps = e_get_steps_right();
 		goalseek_wait(10000);
-	}while(rightSteps<=325);
+	}while(rightSteps<=318);
 	leftTurnCount++;
 	e_set_led(4,0);  		   
 }
@@ -77,8 +78,8 @@ void returnToLine(){
 	e_set_steps_right(0);
 	returningStepsDone = e_get_steps_left();
 	while(returningStepsDone < returningSteps){
-		e_set_speed_left(250);
-		e_set_speed_right(250);
+		e_set_speed_left(500);
+		e_set_speed_right(500);
 		returningStepsDone = e_get_steps_left();
 		goalseek_wait(10000);
 	}	
@@ -87,22 +88,23 @@ void returnToLine(){
 int clearSide(){
 	int prox5;
 	if(sideCalledCount == 0){
-		e_set_speed_left(250);
-		e_set_speed_right(250);
-		goalseek_wait(2000000);
+		e_set_speed_left(500);
+		e_set_speed_right(500);
+		goalseek_wait(1000000);
 		sideCalledCount = 1;
 	}
 	prox5 = e_get_prox(5);
-	if(prox5 > 400){	
+	if(prox5 > 500){	
 		e_set_led(3,1);
-		e_set_speed_left(250);
-		e_set_speed_right(250);
+		e_set_speed_left(500);
+		e_set_speed_right(500);
 		prox5 = e_get_prox(5);
 		goalseek_wait(10000);
 		return 0;
 	} else {
-		goalseek_wait(1500000);
+		goalseek_wait(700000);
 		e_set_led(3,0);
+		sideClearedCheck = 1;
 		return 1;
 	}
 }
@@ -117,14 +119,14 @@ int clearWall(){
 	}
 	if(prox5 > 900){	
 		e_set_led(2,1);
-		e_set_speed_left(250);
-		e_set_speed_right(250);
+		e_set_speed_left(500);
+		e_set_speed_right(500);
 		prox5 = e_get_prox(5);	
 		goalseek_wait(10000);
 		return 0;
 	}
 	else{
-		goalseek_wait(1500000);
+		goalseek_wait(800000);
 		e_set_led(2,0);
 		wallClearedCheck = 1;
 		returningSteps = e_get_steps_left();
@@ -141,26 +143,22 @@ void obstacleAvoid(){
 		wallCleared = clearWall();
 		obstacleAvoid();
 	} else {
-		if(wallCleared == 1){
-			if(leftTurnCount == 0){
-				turnLeftNinetyDegrees();
-			}
+		if(leftTurnCount == 0){
+			turnLeftNinetyDegrees();
+		}
+		if(sideClearedCheck == 0){
 			sideCleared = clearSide();
-			if(sideCleared == 1){
-				turnLeftNinetyDegrees();
-				returnToLine();
-				turnRightNinetyDegrees();	
-			} else {
-				obstacleAvoid();
-			}
-		} else {
 			obstacleAvoid();
-		}	
-	}		
-}
+		} else {
+			e_set_led(1,1);
+			turnLeftNinetyDegrees();
+			returnToLine();
+			turnRightNinetyDegrees();	
+		}
+	}	
+}		
 
 void detectFrontObstacle(){
-		long i;
 		int prox0;
 		int prox7;
 		prox0 = e_get_prox(0);
@@ -174,6 +172,7 @@ void detectFrontObstacle(){
 			rightTurnCount = 0;
 			leftTurnCount = 0;
 			wallClearedCheck = 0;
+			sideClearedCheck = 0;
 			wallCleared = 0;
 			sideCleared = 0;
 			wallCalledCount = 0;
@@ -203,7 +202,7 @@ void goalseeking(int selection){
 	long j;
 	while(1){
 		detectFrontObstacle();
-		for(j=0; j<100000; j++) { asm("nop"); }
+		for(j=0; j<10000; j++) { asm("nop"); }
 	}
 }
 
