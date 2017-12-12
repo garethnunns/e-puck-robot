@@ -2,6 +2,7 @@
 #include "../lib/motor_led/e_motors.h"	
 #include "../lib/motor_led/e_led.h"
 #include "../lib/a_d/e_prox.h"
+#include "../lib/a_d/utility.h"
 
 int aggressive (int selection)
 {
@@ -10,13 +11,13 @@ int aggressive (int selection)
 	e_init_prox();
 	e_init_motors();
 
-    aggressive_change(0, 0);   
+	
     int IRS = 0;                //Original Detection sensor
-    int IRSN = 0;               //New Detection sensor
-    int IRSV = e_get_prox(0);   //Current Detection Sensor value
+    int IRSN;                   //New Detection sensor
+    int IRSV;                   //Current Detection Sensor value
     int i = 0;
 
-	while(1)
+	while(getselector() == selection)
     {
         IRSV = 0;
         for(i=0;i<8;i++)                                  //Loop for sensor reading
@@ -33,6 +34,8 @@ int aggressive (int selection)
             aggressive_change(IRS, IRSV);
         }
     }
+    e_stop_prox();
+    return 0;
 }
 
 
@@ -59,7 +62,7 @@ void aggressive_change (int IRS, int IRSV)
             }
             else                                              //Turns Left
             {
-                 if(IRS==4 || IRS==6)
+                 if(IRS==4 || IRS==5 || IRS==6)
                  {
                       e_set_speed_left(-500);  
                       e_set_speed_right(500);
@@ -72,7 +75,8 @@ void aggressive_change (int IRS, int IRSV)
                       e_set_led(5, 1);
                  }
             }
-        }  
+        } 
+	return;
 }
 
 
