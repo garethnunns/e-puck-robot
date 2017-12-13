@@ -251,21 +251,21 @@ void high_searching(void){
 
 	//move below into function
 	while(high_stop == 0){
-		high_getImage();
-		high_Image();
+		high_get_image();
+		high_image();
 		e_led_clear();
 
 		//Take a section of the center, this means if there is an error with one it won't effect it as a whole.
-		centreValue = numbuffer[38] + numbuffer[39] + numbuffer[40] + numbuffer[41] + numbuffer[42] + numbuffer[43]; // removes stray 
+		centreValue = high_numbuffer[38] + high_numbuffer[39] + high_numbuffer[40] + high_numbuffer[41] + high_numbuffer[42] + high_numbuffer[43]; // removes stray 
 		if(centreValue > 3){ //If green is in the middle then it will go forward 
-			e_destroy_agenda(turn);
+			e_destroy_agenda(high_turn);
 			//forward();
 
-			calculateSpeed();
+			high_calculateSpeed();
 			high_nospin = 1;
 			e_set_led(0,1);
 		} else if(high_nospin == 0){// if green isn't visible and no true values it will turn left
-			e_destroy_agenda(turn);
+			e_destroy_agenda(high_turn);
 			e_set_speed_left (-500);
 			e_set_speed_right(500);
 			e_set_led(2,1);
