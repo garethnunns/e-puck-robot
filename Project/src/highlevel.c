@@ -21,8 +21,6 @@ long high_isgreenVisable;
 int high_stop = 0;
 int high_nospin = 0;
 
-int high_looking = 1;
-
 
 void high_follower(int selection){
 	
@@ -36,6 +34,7 @@ void high_follower(int selection){
 
 	e_start_agendas_processing();
 
+	int high_looking = 1;
 	int following = 0;
 
 	//main program loop for follower
@@ -68,7 +67,7 @@ void high_follower(int selection){
 			}
 
 			// attempt to follow the other robot
-			love(selection);
+			high_follow();
 		}
 
 		aggressive_wait();
@@ -80,7 +79,7 @@ void high_leader(int selection){
 	e_init_prox();
 	e_init_motors();
 
-	int followed = 1;
+	int followed = 0;
 
 	//main program loop for leader
 	while(1){
@@ -101,8 +100,31 @@ void high_leader(int selection){
 
 		aggressive_wait();
 	}
+}
 
+int previousHighestSensor = 0;  // Original Detection sensor
+int currentHighestSensor = 0; // New Detection sensor
+int currentHighestSensorValue = 0; // Current Detection Sensor value
 
+void high_follow(void) {
+    int i = 0; // iterator
+
+    currentHighestSensorValue = 0;
+
+    for(i=0;i<8;i++) {
+	// Loop for sensor reading
+        if(e_get_prox(i) > currentHighestSensorValue) {
+			// Sets Highest detection
+            currentHighestSensor = i;
+            currentHighestSensorValue = e_get_prox(i);
+        }
+    }
+
+    if(currentHighestSensor != previousHighestSensor) {
+		// Calls movement function if highest changes
+        previousHighestSensor = currentHighestSensor;
+        love_change(previousHighestSensor, currentHighestSensorValue);
+    }
 }
 
 int high_sense_green(void){
