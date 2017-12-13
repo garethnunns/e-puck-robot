@@ -1,0 +1,195 @@
+http://hades.mech.northwestern.edu/images/4/4c/E-puckReferenceManual.pdf p 306
+
+9.70 motor_led/advance_one_timer/e_remote_control.c File Reference
+Manage the IR receiver module (timer2).
+#include "e_remote_control.h"
+#include "../e_epuck_ports.h"
+#include "e_agenda.h"
+#include "e_led.h"
+Functions
+• void e_init_remote_control (void)
+Initialise the IR receiver ports.
+• void __attribute__ ((__interrupt__, auto_psv))
+• void e_read_remote_control (void)
+Read the signal and stock the information.
+• unsigned char e_get_check (void)
+Read the check bit.
+• unsigned char e_get_address (void)
+Read the adress of the commande.
+• unsigned char e_get_data (void)
+Read the data of the command.
+Variables
+• static unsigned char address_temp = 0
+• static unsigned char data_temp = 0
+• static unsigned char check_temp = 0
+• static unsigned char address = 0
+• static unsigned char data = 0
+• static unsigned char check = 2
+9.70.1 Detailed Description
+Manage the IR receiver module (timer2).
+This module manage the IR receiver with the agenda solution (timer2).
+Alittle exemple to manage the IR remote (the body LED change his state when you press a button of the
+IR controller).
+Generated on Fri Nov 9 06:32:57 2007 for e-puck by Doxygen
+9.70 motor_led/advance_one_timer/e_remote_control.c File Reference 307
+#include <p30f6014A.h>
+#include <motor_led/e_epuck_ports.h>
+#include <motor_led/e_init_port.h>
+#include <motor_led/advance_one_timer/e_remote_control.h>
+#include <motor_led/advance_one_timer/e_agenda.h>
+int main(void)
+{
+int ir_check;
+int previous_check = 0;
+e_init_port();
+e_init_remote_control();
+e_start_agendas_processing();
+while(1)
+{
+ir_check = e_get_check();
+if(ir_check != previous_check)
+BODY_LED = BODY_LED^1;
+previous_check = ir_check;
+}
+}
+See also:
+e_agenda.h (p. 245)
+Author:
+Code: Francesco Mondada, Lucas Meier
+Doc: Jonathan Besuchet
+9.70.2 Function Documentation
+9.70.2.1 void __attribute__ ((__interrupt__, auto_psv))
+9.70.2.2 unsigned char e_get_address (void)
+Read the adress of the commande.
+Returns:
+adress adress part of the signal
+9.70.2.3 unsigned char e_get_check (void)
+Read the check bit.
+Returns:
+check check bit of the signal
+9.70.2.4 unsigned char e_get_data (void)
+Read the data of the command.
+Returns:
+data data part of the signal
+Generated on Fri Nov 9 06:32:57 2007 for e-puck by Doxygen
+308 e-puck File Documentation
+9.70.2.5 void e_init_remote_control (void)
+Initialise the IR receiver ports.
+9.70.2.6 void e_read_remote_control (void)
+Read the signal and stock the information.
+9.70.3 Variable Documentation
+9.70.3.1 unsigned char address = 0 [static]
+9.70.3.2 unsigned char address_temp = 0 [static]
+9.70.3.3 unsigned char check = 2 [static]
+9.70.3.4 unsigned char check_temp = 0 [static]
+9.70.3.5 unsigned char data = 0 [static]
+9.70.3.6 unsigned char data_temp = 0 [static]
+Generated on Fri Nov 9 06:32:57 2007 for e-puck by Doxygen
+9.71 motor_led/advance_one_timer/e_remote_control.h File Reference 309
+9.71 motor_led/advance_one_timer/e_remote_control.h File Reference
+Manage the LEDs with blinking possibility (timer2).
+Defines
+• #define BOTTOMR 10
+• #define BOTTOMl 11
+• #define STANDBY 12
+• #define MUTE 13
+• #define VOL_UP 16
+• #define VOL_DOWN 17
+• #define CHAN_UP 32
+• #define CHAN_DOWN 33
+• #define I_II 35
+• #define OUT_AUX_1 56
+Functions
+• void e_init_remote_control (void)
+Initialise the IR receiver ports.
+• void e_read_remote_control (void)
+Read the signal and stock the information.
+• unsigned char e_get_check (void)
+Read the check bit.
+• unsigned char e_get_address (void)
+Read the adress of the commande.
+• unsigned char e_get_data (void)
+Read the data of the command.
+9.71.1 Detailed Description
+Manage the LEDs with blinking possibility (timer2).
+Manage the IR receiver module (timer2).
+Here we use the agenda solution to make the LED blinking.
+A little exemple for LEDs blinking with agenda (all LEDs blink with 100ms delay)
+#include <p30f6014A.h>
+#include <motor_led/e_epuck_ports.h>
+#include <motor_led/e_init_port.h>
+#include <motor_led/advance_one_timer/e_led.h>
+#include <motor_led/advance_one_timer/e_agenda.h>
+Generated on Fri Nov 9 06:32:57 2007 for e-puck by Doxygen
+310 e-puck File Documentation
+int main(void)
+{
+e_init_port();
+e_activate_agenda(e_blink_led, 1000); //blink with 100ms
+e_start_agendas_processing();
+while(1) {}
+}
+See also:
+e_agenda.h (p. 245)
+Author:
+Code: Valentin Longchamp
+Doc: Jonathan Besuchet
+This module manage the IR receiver with the agenda solution (timer2).
+A little exemple to manage the IR remote (the body LED change his state when you press a button of the
+IR controller).
+#include <p30f6014A.h>
+#include <motor_led/e_epuck_ports.h>
+#include <motor_led/e_init_port.h>
+#include <motor_led/advance_one_timer/e_remote_control.h>
+#include <motor_led/advance_one_timer/e_agenda.h>
+int main(void)
+{
+int ir_check;
+int previous_check = 0;
+e_init_port();
+e_init_remote_control();
+e_start_agendas_processing();
+while(1)
+{
+ir_check = e_get_check();
+if(ir_check != previous_check)
+BODY_LED = BODY_LED^1;
+previous_check = ir_check;
+}
+}
+See also:
+e_agenda.h (p. 245)
+Author:
+Jonathan Besuchet
+Generated on Fri Nov 9 06:32:57 2007 for e-puck by Doxygen
+9.71 motor_led/advance_one_timer/e_remote_control.h File Reference 311
+9.71.2 Define Documentation
+9.71.2.1 #define BOTTOMl 11
+9.71.2.2 #define BOTTOMR 10
+9.71.2.3 #define CHAN_DOWN 33
+9.71.2.4 #define CHAN_UP 32
+9.71.2.5 #define I_II 35
+9.71.2.6 #define MUTE 13
+9.71.2.7 #define OUT_AUX_1 56
+9.71.2.8 #define STANDBY 12
+9.71.2.9 #define VOL_DOWN 17
+9.71.2.10 #define VOL_UP 16
+9.71.3 Function Documentation
+9.71.3.1 unsigned char e_get_address (void)
+Read the adress of the commande.
+Returns:
+adress adress part of the signal
+9.71.3.2 unsigned char e_get_check (void)
+Read the check bit.
+Returns:
+check check bit of the signal
+9.71.3.3 unsigned char e_get_data (void)
+Read the data of the command.
+Returns:
+data data part of the signal
+9.71.3.4 void e_init_remote_control (void)
+Initialise the IR receiver ports.
+Generated on Fri Nov 9 06:32:57 2007 for e-puck by Doxygen
+312 e-puck File Documentation
+9.71.3.5 void e_read_remote_control (void)
+Read the signal and stock the information.
