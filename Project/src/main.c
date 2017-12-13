@@ -22,7 +22,7 @@
 #include "goalseeking.h"
 #include "curious.h"
 #include "fear.h"
-
+#include "park.h"
 
 int main() {
 	int selector;
@@ -77,6 +77,9 @@ int main() {
 					e_set_body_led(2);
 				previous_check = ir_check;
 			}
+		}
+		else if (selector == 9) {
+			park(selector);
 		}
 		else { 
 			flash_led(selector);
