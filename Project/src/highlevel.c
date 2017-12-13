@@ -52,12 +52,10 @@ void high_follower(int selection){
 						high_looking = 0;
 						following = 1;
 				}
-
-				// go to green
-				
-				
-	
-				
+				else {
+					// go to green
+					high_searching();
+				}				
 		}
 
 		if(following){
@@ -78,7 +76,6 @@ void high_follower(int selection){
 }
 
 void high_leader(int selection){
-	
 	e_init_port();
 	e_init_prox();
 	e_init_motors();
@@ -87,7 +84,6 @@ void high_leader(int selection){
 
 	//main program loop for leader
 	while(1){
-
 		int back_1 = e_get_prox(3);
 		int back_2 = e_get_prox(4);
 		int back = (back_1 > back_2) ? back_1 : back_2;
@@ -181,4 +177,98 @@ void high_image(){
 void high_get_image(){
  	e_poxxxx_launch_capture((char *)high_buffer);
 	while(!e_poxxxx_is_img_ready()){};
+}
+
+//Decide which way to turn based on the number of true pixels.
+int high_turnDirection(){
+	int sumL = 0;
+	int sumR = 0;
+	int i;
+	for(i=0;i<40;i++){
+		sumL += high_numbuffer[i];
+		sumR += high_numbuffer[i+40];
+	}
+	if(sumL<sumR){ 
+		return 1;
+	}else{
+		return 0;
+	}
+}
+//Function to deal with turning.
+void high_turn(void) {
+	if(high_turnDirection()){
+		e_set_speed_left (500);
+		e_set_speed_right(-500);
+	}else{
+		e_set_speed_left (-500);
+		e_set_speed_right(500);
+	}
+}
+void high_forward(int speed){
+	e_set_speed_left (speed);
+	e_set_speed_right(speed);
+}
+
+void high_allLED(void){
+	e_set_led(9,1);
+}
+
+void high_calculateSpeed(void) {
+	
+	int counter = 0;
+	int x;
+
+	for(x=0;x<80;x++){
+		if (high_numbuffer[x] == 1){
+			counter += 1;
+		}
+	}
+
+	if (counter >= 75) {
+		high_forward(0);
+		high_allLED();
+		high_stop = 1;
+	} else if (counter > 40) {
+		high_forward(500);
+	} else if (counter > 20){
+		high_forward(750);
+	} else
+		high_forward(1000);
+}
+
+//Main function of follower
+void high_searching(void){
+	/* already in high_follower
+	//basic set up for the camera and 
+	e_poxxxx_init_cam();
+	e_poxxxx_config_cam(0,(ARRAY_HEIGHT - 4)/2,640,4,8,4,RGB_565_MODE);
+	e_poxxxx_write_cam_registers();  
+
+	e_start_agendas_processing(); */
+	int centreValue;
+
+	//while loop with ir cutout
+
+	//move below into function
+	while(high_stop == 0){
+		high_getImage();
+		high_Image();
+		e_led_clear();
+
+		//Take a section of the center, this means if there is an error with one it won't effect it as a whole.
+		centreValue = numbuffer[38] + numbuffer[39] + numbuffer[40] + numbuffer[41] + numbuffer[42] + numbuffer[43]; // removes stray 
+		if(centreValue > 3){ //If green is in the middle then it will go forward 
+			e_destroy_agenda(turn);
+			//forward();
+
+			calculateSpeed();
+			high_nospin = 1;
+			e_set_led(0,1);
+		} else if(high_nospin == 0){// if green isn't visible and no true values it will turn left
+			e_destroy_agenda(turn);
+			e_set_speed_left (-500);
+			e_set_speed_right(500);
+			e_set_led(2,1);
+		}
+	}
 }
