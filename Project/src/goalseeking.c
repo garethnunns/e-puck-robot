@@ -39,7 +39,7 @@ void goalseek_wait(long value)
    {
        	asm("nop");
    }
-
+}
 
 void turnLightsOn(){
 	// should be an infinite wait that turns lights on, called when goal is found
@@ -67,7 +67,6 @@ void checkGreenObstacle(){
 
 	centreValue = goalseek_numbuffer[38] + goalseek_numbuffer[39] + goalseek_numbuffer[40] + goalseek_numbuffer[41] + goalseek_numbuffer[42] + goalseek_numbuffer[43]; // removes stray 
 	if(centreValue > 3){ //Activates camera and checks if detecting green in the middle  
-}
 		while(1){
 			turnLightsOn();
 		}
