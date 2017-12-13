@@ -1,10 +1,10 @@
-#include "motor_led/e_init_port.h"
-#include "motor_led/e_epuck_ports.h"
-#include "motor_led/advance_one_timer/e_motors.h"
-#include "motor_led/advance_one_timer/e_agenda.h"
-#include "uart/e_uart_char.h"
-#include "camera/fast_2_timer/e_poxxxx.h"
-#include "motor_led/advance_one_timer/e_led.h"
+#include "../lib/motor_led/e_init_port.h"
+#include "../lib/motor_led/e_epuck_ports.h"
+#include "../lib/motor_led/advance_one_timer/e_motors.h"
+#include "../lib/motor_led/advance_one_timer/e_agenda.h"
+#include "../lib/uart/e_uart_char.h"
+#include "../lib/camera/fast_2_timer/e_poxxxx.h"
+#include "../lib/motor_led/advance_one_timer/e_led.h"
 
 #include "stdio.h"
 #include "string.h"
@@ -14,7 +14,7 @@ char buffer[160];
 int numbuffer[80];
 long isGreenVisable;
 int stop = 0;
-int nospin = 0;
+int nospin = 0; 
 
 //custom cam picture load
 void getImage(){

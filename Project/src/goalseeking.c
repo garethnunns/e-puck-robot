@@ -12,11 +12,11 @@
 #include "string.h"
 #include "stdlib.h"
 
-char buffer[160];
-int numbuffer[80];
-long isGreenVisable;
-int stop = 0;
-int nospin = 0;
+char goalseek_buffer[160];
+int goalseek_numbuffer[80];
+long goalseek_isGreenVisable;
+//int stop = 0;
+//int nospin = 0;
 int frontObstacleCount = 0;
 int rightTurnCount = 0;
 int leftTurnCount = 0;
@@ -63,10 +63,10 @@ void goalseekFunction(){
 	e_start_agendas_processing();
 	int centreValue;
 
-	getImage();
-	Image();
+	goalseek_getImage();
+	goalseek_Image();
 
-	centreValue = numbuffer[38] + numbuffer[39] + numbuffer[40] + numbuffer[41] + numbuffer[42] + numbuffer[43]; // removes stray 
+	centreValue = goalseek_numbuffer[38] + goalseek_numbuffer[39] + goalseek_numbuffer[40] + goalseek_numbuffer[41] + goalseek_numbuffer[42] + goalseek_numbuffer[43]; // removes stray 
 	if(centreValue > 3){ //If green is in the middle then it will go forward 
 		while(1){
 			turnLightsOn();
@@ -74,30 +74,30 @@ void goalseekFunction(){
 	}
 }
 
-void Image(){	
+void goalseek_Image(){	
 	long i;
 	int green, red, vis;
 	for(i=0; i<80; i++){
 		//RGB turned into an integer value for comparison
-		red = (buffer[2*i] & 0xF8);
-		green = (((buffer[2*i] & 0x07) << 5) | ((buffer[2*i+1] & 0xE0) >> 3));
+		red = (goalseek_buffer[2*i] & 0xF8);
+		green = (((goalseek_buffer[2*i] & 0x07) << 5) | ((goalseek_buffer[2*i+1] & 0xE0) >> 3));
 		if(green > red + 20){ //Green is usually much higher then red due the the extra bit place in RGB565
-			numbuffer[i] = 1;
+			goalseek_numbuffer[i] = 1;
 			vis +=1;
 		}else{
-			numbuffer[i] = 0;
+			goalseek_numbuffer[i] = 0;
 		}
-		//If Green is visable then isGreenVisable turns to true
+		//If Green is visable then goalseek_isGreenVisable turns to true
 		if(vis>0){
-			isGreenVisable = 1;
+			goalseek_isGreenVisable = 1;
 		}else{
-			isGreenVisable = 0;
+			goalseek_isGreenVisable = 0;
 		}
 	}	
 }
 
-void getImage(){
-	e_poxxxx_launch_capture((char *)buffer);
+void goalseek_getImage(){
+	e_poxxxx_launch_capture((char *)goalseek_buffer);
     while(!e_poxxxx_is_img_ready()){};
 }
 
@@ -242,7 +242,7 @@ void detectFrontObstacle(){
 			returningSteps = 0;				
 		} else { 
 			if(prox0 > 1500 ||  prox7 > 1500){
-				e_set_speed_left(0); // stop moving
+				e_set_speed_left(0); // moving
 				e_set_speed_right(0);
 				e_set_led(0,1);
 				frontObstacleCount++;  // bump up obstacle count

@@ -21,6 +21,8 @@ long high_isgreenVisable;
 int high_stop = 0;
 int high_nospin = 0;
 
+int high_looking = 1;
+
 
 void high_follower(int selection){
 	
@@ -34,12 +36,11 @@ void high_follower(int selection){
 
 	e_start_agendas_processing();
 
-	int looking = 1;
 	int following = 0;
 
 	//main program loop for follower
 	while(1){
-		if(looking){
+		if(high_looking){
 				// when searching for the other robot
 
 				int is_full_green = high_sense_green();
@@ -48,12 +49,14 @@ void high_follower(int selection){
 
 				if(is_full_green && (front_1 > 300 || front_2 > 300)){
 						// found the robot (the robot should look green and there's something in front)
-						looking = 0;
+						high_looking = 0;
 						following = 1;
 				}
 
 				// go to green
-
+				
+				
+	
 				
 		}
 
@@ -62,7 +65,7 @@ void high_follower(int selection){
 
 			if(high_prox_clear()){
 				// no longer followign the other robot
-				looking = 1;
+				high_looking = 1;
 				following = 0;
 			}
 
