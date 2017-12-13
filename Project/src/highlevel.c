@@ -70,7 +70,7 @@ void high_follower(int selection){
 			high_follow();
 		}
 
-		aggressive_wait();
+		//aggressive_wait();
 	}
 }
 
@@ -216,6 +216,7 @@ int high_turnDirection(){
 		return 0;
 	}
 }
+
 //Function to deal with turning.
 void high_turn(void) {
 	if(high_turnDirection()){
@@ -226,6 +227,7 @@ void high_turn(void) {
 		e_set_speed_right(500);
 	}
 }
+
 void high_forward(int speed){
 	e_set_speed_left (speed);
 	e_set_speed_right(speed);
