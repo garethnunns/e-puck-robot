@@ -39,7 +39,6 @@ void goalseek_wait(long value)
    {
        	asm("nop");
    }
-}
 
 
 void turnLightsOn(){
@@ -54,7 +53,7 @@ void turnLightsOn(){
 	}
 }
 
-void goalseekFunction(){
+void checkGreenObstacle(){
 	
     e_poxxxx_init_cam();
 	e_poxxxx_config_cam(0,(ARRAY_HEIGHT - 4)/2,640,4,8,4,RGB_565_MODE);
@@ -67,7 +66,8 @@ void goalseekFunction(){
 	goalseek_Image();
 
 	centreValue = goalseek_numbuffer[38] + goalseek_numbuffer[39] + goalseek_numbuffer[40] + goalseek_numbuffer[41] + goalseek_numbuffer[42] + goalseek_numbuffer[43]; // removes stray 
-	if(centreValue > 3){ //If green is in the middle then it will go forward 
+	if(centreValue > 3){ //Activates camera and checks if detecting green in the middle  
+}
 		while(1){
 			turnLightsOn();
 		}
@@ -77,17 +77,16 @@ void goalseekFunction(){
 void goalseek_Image(){	
 	long i;
 	int green, red, vis;
-	for(i=0; i<80; i++){
-		//RGB turned into an integer value for comparison
+	for(i=0; i<80; i++){	
 		red = (goalseek_buffer[2*i] & 0xF8);
 		green = (((goalseek_buffer[2*i] & 0x07) << 5) | ((goalseek_buffer[2*i+1] & 0xE0) >> 3));
-		if(green > red + 20){ //Green is usually much higher then red due the the extra bit place in RGB565
+		if(green > red + 20){ //Checks if green is more than red, accounting for increased number of green sensors
 			goalseek_numbuffer[i] = 1;
 			vis +=1;
 		}else{
 			goalseek_numbuffer[i] = 0;
 		}
-		//If Green is visable then goalseek_isGreenVisable turns to true
+		//Variable becomes true if visible
 		if(vis>0){
 			goalseek_isGreenVisable = 1;
 		}else{
@@ -246,7 +245,7 @@ void detectFrontObstacle(){
 				e_set_speed_right(0);
 				e_set_led(0,1);
 				frontObstacleCount++;  // bump up obstacle count
-				goalseekFunction();
+				checkGreenObstacle();
 			} else {
 				e_set_speed_left(300); // move forwards
 				e_set_speed_right(300);
