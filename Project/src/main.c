@@ -15,14 +15,13 @@
 #define PI 3.14159265358979
 
 /* our header files go here */
-#include "highlevel.h"
 #include "aggressive.h"
 #include "avoid.h"
 #include "main.h"
 #include "goalseeking.h"
 #include "curious.h"
 #include "fear.h"
-
+#include "park.h"
 
 int main() {
 	int selector;
@@ -59,24 +58,7 @@ int main() {
 			// Goal Seeking and Obstacle Avoidance
 			goalseeking(selector);
 		} else if (selector==6) {
-			// High Level
-			//runhighlevel();
-			high_follower();
-		}else if (selector == 7){
-			high_leader();
-		}
-		else if (selector == 8) {
-			int ir_check;
-			int previous_check = 0;
-			e_init_remote_control();
-			e_start_agendas_processing();
-			while(1)
-			{
-				ir_check = e_get_check();
-				if(ir_check != previous_check)
-					e_set_body_led(2);
-				previous_check = ir_check;
-			}
+			park(selector);
 		}
 		else { 
 			flash_led(selector);
